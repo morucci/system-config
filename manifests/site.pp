@@ -15,9 +15,19 @@ node default {
   }
 }
 
+node 'mysql.test.localdomain' {
+  class { 'mysql::server':
+    config_hash => {'root_password' => hiera('mysql_root_password', 'XXX')},
+  }
+  mysql::db { 'gerrit':
+    user     => hiera('mysql_gerrit_user', 'XXX'),
+    password => hiera('mysql_gerrit_password', 'XXX'),
+    host     => 'localhost',
+    grant    => ['all'],
+  }
+}
 
-# Node-OS: precise
-node 'node1.test.localdomain' {
+node 'jenkins.test.localdomain' {
   class { 'openstack_project::jenkins':
     project_config_repo     => 'https://github.com/morucci/project-config.git',
     jenkins_jobs_password   => hiera('jenkins_jobs_password', 'XXX'),
