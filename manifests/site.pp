@@ -60,8 +60,8 @@ node 'gerrit.test.localdomain' {
       ssh_replication_rsa_pubkey_contents => hiera('fake_rsa_ssh_public_key_contents', 'XXX'),
       email => 'toto@gerrit.test.localdomain',
       war => 'http://tarballs.openstack.org/ci/test/gerrit-v2.8.4.19.7c824ff.war',
-      replicate_local = false,
-      testmode = true,
+      replicate_local => false,
+      testmode => true,
   }
 }
 # vim:sw=2:ts=2:expandtab:textwidth=79
