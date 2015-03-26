@@ -17,12 +17,15 @@ node default {
 
 node 'mysql.test.localdomain' {
   class { 'mysql::server':
-    config_hash => {'root_password' => hiera('mysql_root_password', 'XXX')},
+    config_hash => {
+        'root_password' => hiera('mysql_root_password', 'XXX'),
+        'bind_address' => '0.0.0.0',
+    },
   }
   mysql::db { 'reviewdb':
     user     => 'gerrit2',
     password => hiera('mysql_gerrit_password', 'XXX'),
-    host     => 'localhost',
+    host     => 'gerrit.test.localdomain',
     grant    => ['all'],
   }
 }
