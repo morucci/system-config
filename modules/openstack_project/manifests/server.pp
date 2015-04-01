@@ -11,7 +11,7 @@ class openstack_project::server (
   $pin_puppet                = '3.',
   $ca_server                 = undef,
   $afs                       = false,
-  $puppetmaster_server       = 'puppetmaster.openstack.org',
+  $puppetmaster_server       = 'puppetmaster.test.localdomain',
 ) {
   class { 'openstack_project::template':
     iptables_public_tcp_ports => $iptables_public_tcp_ports,
